@@ -1,0 +1,37 @@
+A file or directory prefix of . (hidden files) #해석 : . 으로 접두사하면 hidden file
+
+A file or directory prefix of _ (typically used for non top-level files, e.g. ones included in other files) # 해석 : _ 로 접두사하면 전형적이고 최상위파일이 아닌 경우
+
+Files named README.md or README.qmd (which are typically not actual render targets but rather informational content about the source code to be viewed in the version control web UI).#실제로 render 시킬 파일이 아니고 그냥 정보 포함할 때
+
+project: render: [files] : 메타데이터 내에 이거 포함하면 정밀하게 랜더링조정가능
+
+ex1)
+
+project:
+  render:
+    - section1.qmd
+    - section2.qmd
+    
+ex2)
+project:
+  render:
+    - section*.qmd
+    
+ex3)
+project:
+  render:
+    - "*.qmd"
+    - "!ignored.qmd"
+    - "!ignored-dir/"
+    
+    
+중요
+If the name of your output file needs to start with . or _ (for instance _index.md for Hugo users), 
+you must name the Quarto input file without the prefix (for instance index.qmd)
+and add an explicit output-file parameter in the YAML such as
+
+---
+output-file: _index.md
+---
+
